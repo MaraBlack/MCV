@@ -1,0 +1,50 @@
+<div class="nav-bar">
+  <mat-drawer-container class="nav-container" autosize>
+    <mat-drawer
+      #drawer
+      mode="side"
+      opened
+      class="nav"
+      [class]="!showFiller ? 'nav-left' : 'nav-left-expanded'"
+    >
+      <mat-nav-list>
+        <a class="expand-menu-btn">
+          <mat-icon
+            class="svg-icon"
+            aria-hidden="false"
+            (click)="showFiller = !showFiller"
+            >keyboard_control</mat-icon
+          >
+        </a>
+        <a
+          #routeElement
+          *ngFor="let route of routes"
+          mat-list-item
+          [routerLink]="route.path"
+          [ngClass]="route.isActive ? route.class : ''"
+          (click)="setActive(route.icon)"
+        >
+          <mat-icon
+            class="svg-icon"
+            *ngIf="route.icon"
+            [svgIcon]="route.icon"
+          ></mat-icon>
+          <p class="app-name" *ngIf="showFiller">{{ route.label }}</p>
+        </a>
+      </mat-nav-list>
+
+      <div class="edit-apps">
+        <mat-icon
+            class="svg-icon"
+            aria-hidden="false"
+            (click)="openDialog()"
+            >edit</mat-icon
+          >
+      </div>
+    </mat-drawer>
+
+    <div class="sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</div>

@@ -1,0 +1,19 @@
+<div class="round-icon-container">
+  <div class="wrapper">
+    <img [src]="inputSrc" alt="inputSrc" />
+
+    <mat-icon class="icon remove"
+      *ngIf="isRemovable"
+      aria-hidden="false"
+      (click)="removeIcon(this)"
+      >remove_circle_outline</mat-icon
+    >
+
+    <mat-icon class="icon add"
+      *ngIf="!isRemovable"
+      aria-hidden="false"
+      (click)="addIcon(this)"
+      >add_circle_outline</mat-icon
+    >
+  </div>
+</div>

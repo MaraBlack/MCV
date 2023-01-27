@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Edit applications bar</h2>
+<mat-dialog-content class="dialog-container">
+  <div class="existing-apps">
+    <!-- <mat-grid-list cols="3" rowHeight="2:1">
+      <ng-container *ngFor="let row of data; let i = index">
+        <mat-grid-tile>
+          <div>{{ row }}</div>
+        </mat-grid-tile>
+      </ng-container>
+    </mat-grid-list> -->
+  </div>
+  <div class="add-apps"></div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Done</button>
+</mat-dialog-actions>
