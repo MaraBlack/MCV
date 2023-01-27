@@ -8,16 +8,20 @@ import { HomeComponent } from './components/applications/home/home.component';
 import { LinkedinComponent } from './components/applications/linkedin/linkedin.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSidenavModule } from '@angular/material/sidenav'
-import {MatIconModule} from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list'
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
-import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHandler,
+} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { DeviantComponent } from './components/applications/deviant/deviant.component';
 import { EditNavBarComponent } from './components/nav-bar/edit-nav-bar/edit-nav-bar.component';
 import { IconComponent } from './components/shared/icon/icon.component';
-import { DefaultComponentComponent } from './components/applications/base/default-component/default-component.component';
+import { DefaultComponent } from './components/applications/base/default-component/default.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,7 @@ import { DefaultComponentComponent } from './components/applications/base/defaul
     DeviantComponent,
     EditNavBarComponent,
     IconComponent,
-    DefaultComponentComponent
+    DefaultComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,9 +43,9 @@ import { DefaultComponentComponent } from './components/applications/base/defaul
     BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,
-    MatDialogModule
+    MatDialogModule,
   ],
-  providers: [ ],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

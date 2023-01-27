@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { DefaultComponent } from '../base/default-component/default.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends DefaultComponent {
+  override appName: string = 'home';
 
-img = "home"
-img2="linkedin"
-remove = true;
-  constructor() { }
-
-  ngOnInit(): void {
+  img = 'home';
+  img2 = 'linkedin';
+  remove = true;
+  constructor() {
+    super();
   }
 
+  override ngOnInit(): void {}
 }
