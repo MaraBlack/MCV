@@ -12,22 +12,19 @@ export class IconComponent implements OnInit {
 
   inputSrc = '';
 
-  constructor() {
-  }
-
+  constructor() {}
 
   ngOnInit(): void {
-    // this.inputSrc = `../../../../assets/svg/${this.image}.svg`;
-    // console.log(this.inputSrc);
-  }
-
-ngOnChanges() {
     this.inputSrc = `../../../../assets/svg/${this.image}.svg`;
     console.log(this.inputSrc);
-}
+  }
+
+  ngOnChanges() {
+    this.inputSrc = `../../../../assets/svg/${this.image}.svg`;
+    console.log(this.inputSrc);
+  }
   removeIcon(elem: any) {
     console.log(elem);
-    
   }
 
   addIcon(elem: any) {

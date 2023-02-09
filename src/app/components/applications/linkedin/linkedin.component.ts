@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DefaultComponent } from '../base/default-component/default.component';
+import { DefaultComponent } from '../default-component/default.component';
 
 @Component({
   selector: 'app-linkedin',

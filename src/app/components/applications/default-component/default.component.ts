@@ -7,6 +7,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class DefaultComponent implements OnInit, OnDestroy {
   public appName: string = 'default';
+  
   userName: string = '';
   description: string = '';
   icon: string = '';

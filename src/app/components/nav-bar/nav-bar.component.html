@@ -18,7 +18,7 @@
         </a>
         <a
           #routeElement
-          *ngFor="let route of routes"
+          *ngFor="let route of appRoutes"
           mat-list-item
           [routerLink]="route.path"
           [ngClass]="route.isActive ? route.class : ''"
@@ -34,12 +34,9 @@
       </mat-nav-list>
 
       <div class="edit-apps">
-        <mat-icon
-            class="svg-icon"
-            aria-hidden="false"
-            (click)="openDialog()"
-            >edit</mat-icon
-          >
+        <mat-icon class="svg-icon" aria-hidden="false" (click)="openDialog()"
+          >edit</mat-icon
+        >
       </div>
     </mat-drawer>
 

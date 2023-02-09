@@ -1,13 +1,29 @@
 <h2 mat-dialog-title>Edit applications bar</h2>
 <mat-dialog-content class="dialog-container">
   <div class="existing-apps">
-    <!-- <mat-grid-list cols="3" rowHeight="2:1">
-      <ng-container *ngFor="let row of data; let i = index">
+    <mat-grid-list cols="5" rowHeight="1:1" class="existing-apps">
+      <ng-container *ngFor="let app of existingApps; let i = index">
         <mat-grid-tile>
-          <div>{{ row }}</div>
+          <app-icon
+            class="svg-icon"
+            [image]="app.id"
+            [isRemovable]="app.isInNavigationBar"
+          ></app-icon>
         </mat-grid-tile>
       </ng-container>
-    </mat-grid-list> -->
+    </mat-grid-list>
+
+    <mat-grid-list cols="5" rowHeight="1:1" class="to-add-apps">
+      <ng-container *ngFor="let app of appsToAdd; let i = index">
+        <mat-grid-tile>
+          <app-icon
+            class="svg-icon"
+            [image]="app.id"
+            [isRemovable]="app.isInNavigationBar"
+          ></app-icon>
+        </mat-grid-tile>
+      </ng-container>
+    </mat-grid-list>
   </div>
   <div class="add-apps"></div>
 </mat-dialog-content>

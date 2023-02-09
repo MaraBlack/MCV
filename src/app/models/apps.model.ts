@@ -1,12 +1,38 @@
-interface AppsModel {
-  path: string;
+export interface AppsModel {
+  id: string;
   label: string;
   class: string;
   isActive: boolean;
+  isInNavigationBar: boolean;
 }
 
 export const apps: AppsModel[] = [
-  { path: 'home', label: 'Home', class: 'home', isActive: false },
-  { path: 'linkedin', label: 'LinkedIn', class: 'ln', isActive: false },
-  { path: 'deviant', label: 'DeviantArt', class: 'deviant', isActive: false },
+  {
+    id: 'home',
+    label: 'Home',
+    class: 'home',
+    isActive: false,
+    isInNavigationBar: true,
+  },
+  {
+    id: 'home',
+    label: 'Home',
+    class: 'home',
+    isActive: false,
+    isInNavigationBar: false,
+  },
+  {
+    id: 'linkedin',
+    label: 'LinkedIn',
+    class: 'ln',
+    isActive: false,
+    isInNavigationBar: false,
+  },
+  {
+    id: 'deviant',
+    label: 'DeviantArt',
+    class: 'deviant',
+    isActive: false,
+    isInNavigationBar: false,
+  },
 ];

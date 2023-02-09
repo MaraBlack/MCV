@@ -12,6 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
 import {
   HttpClient,
   HttpClientModule,
@@ -21,7 +22,7 @@ import { CommonModule } from '@angular/common';
 import { DeviantComponent } from './components/applications/deviant/deviant.component';
 import { EditNavBarComponent } from './components/nav-bar/edit-nav-bar/edit-nav-bar.component';
 import { IconComponent } from './components/shared/icon/icon.component';
-import { DefaultComponent } from './components/applications/base/default-component/default.component';
+import { DefaultComponent } from './components/applications/default-component/default.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DefaultComponent } from './components/applications/base/default-compone
     HttpClientModule,
     CommonModule,
     MatDialogModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

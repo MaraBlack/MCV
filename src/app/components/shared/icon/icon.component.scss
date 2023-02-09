@@ -5,9 +5,8 @@
   height: 80px;
 }
 img {
-  position: relative;
   height: 64px;
-  border-radius: 50%;
+  border-radius: 24%;
   z-index: -1;
   background: $primary;
   left: 2%;
@@ -15,9 +14,10 @@ img {
 .icon {
   position: relative;
   width: 48px;
-  font-size: 36px;
+  font-size: 32px;
   left: 52%;
-  top: -104%;
+  top: -96%;
+  padding: 4%;
 }
 
 .add {

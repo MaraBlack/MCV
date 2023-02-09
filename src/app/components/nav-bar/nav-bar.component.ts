@@ -11,10 +11,15 @@ import { EditNavBarComponent } from './edit-nav-bar/edit-nav-bar.component';
   styleUrls: ['./nav-bar.component.scss'],
 })
 export class NavBarComponent implements OnInit {
-  routes = routes;
+  //remove default paths or redirects
+  appRoutes = routes.filter((r) => {
+    return r.path !== '' && r.path !== '**';
+  });
+
   showFiller: boolean = false;
 
   constructor(private router: Router, public dialog: MatDialog) {
+    console.log(this.appRoutes);
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // event is an instance of NavigationEnd, get url!
@@ -22,7 +27,9 @@ export class NavBarComponent implements OnInit {
         console.log('url is', url);
 
         // this.setActive(url);
-        const selectedRoute = routes.find((obj) => obj.icon == url.replace('/',''));
+        const selectedRoute = routes.find(
+          (obj) => obj.icon == url.replace('/', '')
+        );
         // console.log('+++', selectedRoute);
         if (selectedRoute) selectedRoute.isActive = true;
       }
@@ -44,7 +51,7 @@ export class NavBarComponent implements OnInit {
     if (selectedRoute) selectedRoute.isActive = true;
   }
 
-   openDialog() {
+  openDialog() {
     const dialogRef = this.dialog.open(EditNavBarComponent);
 
     // dialogRef.afterClosed().subscribe(result => {

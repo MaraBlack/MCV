@@ -34,11 +34,10 @@ mat-list-item:focus {
   }
 
   .edit-apps {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
     text-align: center;
+    border-top: 1px solid grey;
+    margin: 12%;
+    padding-top: 8%;
   }
 }
 
