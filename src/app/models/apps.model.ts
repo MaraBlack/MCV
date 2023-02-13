@@ -12,13 +12,6 @@ export const apps: AppsModel[] = [
     label: 'Home',
     class: 'home',
     isActive: false,
-    isInNavigationBar: true,
-  },
-  {
-    id: 'home',
-    label: 'Home',
-    class: 'home',
-    isActive: false,
     isInNavigationBar: false,
   },
   {
@@ -33,6 +26,6 @@ export const apps: AppsModel[] = [
     label: 'DeviantArt',
     class: 'deviant',
     isActive: false,
-    isInNavigationBar: false,
+    isInNavigationBar: true,
   },
 ];

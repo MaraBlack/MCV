@@ -1,7 +1,41 @@
 <h2 mat-dialog-title>Edit applications bar</h2>
 <mat-dialog-content class="dialog-container">
   <div class="existing-apps">
-    <mat-grid-list cols="5" rowHeight="1:1" class="existing-apps">
+    <!-- exsiting apps -->
+    <div
+      class="app-inner existing-apps-list"
+      [ngClass]="dragDropExistingApps.length == 0 ? 'drag-drop-area' : ''"
+      #existingApps="cdkDropList"
+      cdkDropList
+      [cdkDropListData]="dragDropExistingApps"
+      [cdkDropListConnectedTo]="appsToAdd"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div
+        class="placeholder-drag-drop"
+        *ngIf="dragDropExistingApps.length == 0"
+      >
+        Drag here apps to be displayed
+      </div>
+      <ng-container *ngFor="let app of dragDropExistingApps; let i = index">
+        <app-icon [image]="app" cdkDrag [cdkDragData]="app"></app-icon>
+      </ng-container>
+    </div>
+
+    <!-- apps to add to existing list-->
+    <div
+      class="app-inner"
+      cdkDropList
+      #appsToAdd="cdkDropList"
+      [cdkDropListData]="dragDropAppsToAdd"
+      [cdkDropListConnectedTo]="existingApps"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <ng-container *ngFor="let app of dragDropAppsToAdd; let i = index">
+        <app-icon [image]="app" cdkDrag [cdkDragData]="app"></app-icon>
+      </ng-container>
+    </div>
+    <!-- <mat-grid-list cols="5" rowHeight="1:1" class="existing-apps">
       <ng-container *ngFor="let app of existingApps; let i = index">
         <mat-grid-tile>
           <app-icon
@@ -23,7 +57,7 @@
           ></app-icon>
         </mat-grid-tile>
       </ng-container>
-    </mat-grid-list>
+    </mat-grid-list> -->
   </div>
   <div class="add-apps"></div>
 </mat-dialog-content>

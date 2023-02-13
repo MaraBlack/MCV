@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-icon',
@@ -9,6 +9,7 @@ export class IconComponent implements OnInit {
   @Input() image: string = '';
   @Input() size: IconSize = IconSize.medium;
   @Input() isRemovable: boolean = false;
+  @Output() itemClicked = new EventEmitter<string>();
 
   inputSrc = '';
 
@@ -16,19 +17,14 @@ export class IconComponent implements OnInit {
 
   ngOnInit(): void {
     this.inputSrc = `../../../../assets/svg/${this.image}.svg`;
-    console.log(this.inputSrc);
   }
 
-  ngOnChanges() {
-    this.inputSrc = `../../../../assets/svg/${this.image}.svg`;
-    console.log(this.inputSrc);
-  }
   removeIcon(elem: any) {
-    console.log(elem);
+    this.itemClicked.emit(elem);
   }
 
   addIcon(elem: any) {
-    console.log(elem);
+    this.itemClicked.emit(elem);
   }
 }
 

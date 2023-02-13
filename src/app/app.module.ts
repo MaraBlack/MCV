@@ -8,6 +8,7 @@ import { HomeComponent } from './components/applications/home/home.component';
 import { LinkedinComponent } from './components/applications/linkedin/linkedin.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -42,6 +43,7 @@ import { DefaultComponent } from './components/applications/default-component/de
     MatIconModule,
     MatListModule,
     BrowserAnimationsModule,
+    DragDropModule,
     HttpClientModule,
     CommonModule,
     MatDialogModule,

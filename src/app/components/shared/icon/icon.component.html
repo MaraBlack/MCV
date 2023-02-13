@@ -1,19 +1,15 @@
-<div class="round-icon-container">
-  <div class="wrapper">
-    <img [src]="inputSrc" alt="inputSrc" />
+<div class="icon-container">
+  <img class="svg-img" [src]="inputSrc" alt="inputSrc" />
 
-    <mat-icon class="icon remove"
-      *ngIf="isRemovable"
-      aria-hidden="false"
-      (click)="removeIcon(this)"
+  <!-- <div class="icon remove">
+    <mat-icon *ngIf="isRemovable" aria-hidden="false" (click)="removeIcon(this)"
       >remove_circle_outline</mat-icon
     >
+  </div>
 
-    <mat-icon class="icon add"
-      *ngIf="!isRemovable"
-      aria-hidden="false"
-      (click)="addIcon(this)"
+  <div class="icon add">
+    <mat-icon *ngIf="!isRemovable" aria-hidden="false" (click)="addIcon(this)"
       >add_circle_outline</mat-icon
     >
-  </div>
+  </div> -->
 </div>
