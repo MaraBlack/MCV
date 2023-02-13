@@ -25,12 +25,16 @@
     <!-- apps to add to existing list-->
     <div
       class="app-inner"
-      cdkDropList
+      [ngClass]="dragDropAppsToAdd.length == 0 ? 'drag-drop-area' : ''"
       #appsToAdd="cdkDropList"
+      cdkDropList
       [cdkDropListData]="dragDropAppsToAdd"
       [cdkDropListConnectedTo]="existingApps"
       (cdkDropListDropped)="drop($event)"
     >
+      <div class="placeholder-drag-drop" *ngIf="dragDropAppsToAdd.length == 0">
+        Drag here apps to be removed
+      </div>
       <ng-container *ngFor="let app of dragDropAppsToAdd; let i = index">
         <app-icon [image]="app" cdkDrag [cdkDragData]="app"></app-icon>
       </ng-container>
