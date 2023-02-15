@@ -28,21 +28,11 @@ export class ManageRoutesService {
   }
 
   updateDisplayedRoutes(stringArray: string[], toAdd: boolean): void {
-    // if (stringArray.length == 0) {
-    //   routes.forEach((el) => {
-    //     if (el.isInNavigationBar && el.path! == 'home')
-    //       el.isInNavigationBar = false;
-    //   });
-    // } else {
     stringArray.forEach((appName: string) => {
       routes.filter((r) => {
         return r.path === appName;
       })[0].isInNavigationBar = toAdd;
     });
-    // }
-    console.log('manager ', routes);
-
-    // return this.allAppsList;
   }
 
   setToCurrentSelection(selected: string) {

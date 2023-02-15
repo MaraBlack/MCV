@@ -15,12 +15,9 @@ import { EditNavBarComponent } from './edit-nav-bar/edit-nav-bar.component';
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavBarComponent implements OnInit, OnChanges {
-  //remove default paths or redirects
+export class NavBarComponent implements OnInit {
   appRoutes: any = [];
-
   showFiller: boolean = false;
 
   constructor(
@@ -47,8 +44,6 @@ export class NavBarComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {}
 
-  ngOnChanges(): void {}
-
   setToCurrentSelection(selected: string) {
     this.manageRoutesService.setToCurrentSelection(selected);
   }
@@ -60,8 +55,6 @@ export class NavBarComponent implements OnInit, OnChanges {
       this.appRoutes = routes.filter((r) => {
         return r.path !== '' && r.path !== '**' && r.isInNavigationBar == true;
       });
-      // this.cdRef.detectChanges();
-      console.log('close dialog ', routes);
     });
   }
 }

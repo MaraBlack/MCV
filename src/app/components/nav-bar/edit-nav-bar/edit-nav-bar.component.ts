@@ -31,7 +31,6 @@ export class EditNavBarComponent implements OnInit {
   done(): any {
     this.manageService.updateDisplayedRoutes(this.dragDropExistingApps, true);
     this.manageService.updateDisplayedRoutes(this.dragDropAppsToAdd, false);
-    console.log('edit-nav this.allAppsList ', this.manageService.getAllApps());
   }
 
   drop(event: any) {
@@ -50,6 +49,4 @@ export class EditNavBarComponent implements OnInit {
       );
     }
   }
-
-  ngOnChanges(): void {}
 }
