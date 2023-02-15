@@ -55,6 +55,8 @@ export class NavBarComponent implements OnInit {
       this.appRoutes = routes.filter((r) => {
         return r.path !== '' && r.path !== '**' && r.isInNavigationBar == true;
       });
+
+      this.router.navigate(['/home']);
     });
   }
 }
