@@ -1,30 +1,15 @@
-export interface AppsModel {
-  id: string;
-  label: string;
-  class: string;
-  isActive: boolean;
-  isInNavigationBar: boolean;
-}
+import { AppsEnum, AppsLabel, AppsModel } from './icon.model';
 
 export const apps: AppsModel[] = [
   {
-    id: 'home',
-    label: 'Home',
-    class: 'home',
+    id: AppsEnum.Linkedin,
+    label: AppsLabel.Linkedin,
     isActive: false,
     isInNavigationBar: false,
   },
   {
-    id: 'linkedin',
-    label: 'LinkedIn',
-    class: 'ln',
-    isActive: false,
-    isInNavigationBar: false,
-  },
-  {
-    id: 'deviant',
-    label: 'DeviantArt',
-    class: 'deviant',
+    id: AppsEnum.Deviant,
+    label: AppsLabel.Deviant,
     isActive: false,
     isInNavigationBar: true,
   },

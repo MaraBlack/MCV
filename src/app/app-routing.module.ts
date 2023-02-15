@@ -3,31 +3,29 @@ import { RouterModule, Routes } from '@angular/router';
 import { DeviantComponent } from './components/applications/deviant/deviant.component';
 import { HomeComponent } from './components/applications/home/home.component';
 import { LinkedinComponent } from './components/applications/linkedin/linkedin.component';
+import { AppsEnum, AppsLabel } from './models/icon.model';
 
 export const routes = [
   {
     path: 'home',
     component: HomeComponent,
     label: 'Home',
-    icon: 'home',
-    class: 'home',
     isActive: false,
+    isInNavigationBar: true,
   },
   {
-    path: 'linkedin',
-    component: returnC(),
-    label: 'LinkedIn',
-    icon: 'linkedin',
-    class: 'ln',
+    path: AppsEnum.Linkedin,
+    component: LinkedinComponent,
+    label: AppsLabel.Linkedin,
     isActive: false,
+    isInNavigationBar: false,
   },
   {
-    path: 'deviant',
+    path: AppsEnum.Deviant,
     component: DeviantComponent,
-    label: 'DeviantArt',
-    icon: 'deviant',
-    class: 'deviant',
+    label: AppsLabel.Deviant,
     isActive: false,
+    isInNavigationBar: false,
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent },
@@ -40,5 +38,5 @@ export const routes = [
 export class AppRoutingModule {}
 
 function returnC() {
-  return LinkedinComponent;
+  return;
 }

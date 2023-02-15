@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  OnInit,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
-import { IconService } from 'src/app/services/icon.service';
+import { ManageRoutesService } from 'src/app/services/manage-routes.service';
 import { routes } from '../../app-routing.module';
 import { EditNavBarComponent } from './edit-nav-bar/edit-nav-bar.component';
 
@@ -9,28 +15,31 @@ import { EditNavBarComponent } from './edit-nav-bar/edit-nav-bar.component';
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit, OnChanges {
   //remove default paths or redirects
-  appRoutes = routes.filter((r) => {
-    return r.path !== '' && r.path !== '**';
-  });
+  appRoutes: any = [];
 
   showFiller: boolean = false;
 
-  constructor(private router: Router, public dialog: MatDialog) {
-    console.log(this.appRoutes);
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private manageRoutesService: ManageRoutesService,
+    private cdRef: ChangeDetectorRef
+  ) {
+    this.appRoutes = routes.filter((r) => {
+      return r.path !== '' && r.path !== '**' && r.isInNavigationBar == true;
+    });
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         // event is an instance of NavigationEnd, get url!
         const url = event.urlAfterRedirects;
-        console.log('url is', url);
-
-        // this.setActive(url);
         const selectedRoute = routes.find(
-          (obj) => obj.icon == url.replace('/', '')
+          (obj) => obj.path == url.replace('/', '')
         );
-        // console.log('+++', selectedRoute);
         if (selectedRoute) selectedRoute.isActive = true;
       }
     });
@@ -38,24 +47,21 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  ngOnChange() {}
+  ngOnChanges(): void {}
 
-  setActive(selected: string | undefined) {
-    routes.forEach((el) => {
-      el.isActive = false;
-    });
-
-    // console.log('----', selected);
-    const selectedRoute = routes.find((obj) => obj.icon == selected);
-    // console.log('+++', selectedRoute);
-    if (selectedRoute) selectedRoute.isActive = true;
+  setToCurrentSelection(selected: string) {
+    this.manageRoutesService.setToCurrentSelection(selected);
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(EditNavBarComponent);
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.appRoutes = routes.filter((r) => {
+        return r.path !== '' && r.path !== '**' && r.isInNavigationBar == true;
+      });
+      // this.cdRef.detectChanges();
+      console.log('close dialog ', routes);
+    });
   }
 }

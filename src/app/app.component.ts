@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IconService } from './services/icon.service';
+import { SvgIconRegisterService } from './services/svg-icon-register.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { IconService } from './services/icon.service';
 export class AppComponent implements OnInit {
   title = 'MCV';
 
-  constructor(private iconService: IconService) {}
+  constructor(private iconService: SvgIconRegisterService) {}
 
   ngOnInit(): void {
     this.iconService.registerIcons();

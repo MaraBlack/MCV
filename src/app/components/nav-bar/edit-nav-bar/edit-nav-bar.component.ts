@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { apps } from 'src/app/models/apps.model';
-import { AppsModel } from 'src/app/models/apps.model';
-import {
-  CdkDragDrop,
-  CdkDropList,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
+import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { AppsModel } from 'src/app/models/icon.model';
+import { ManageRoutesService } from 'src/app/services/manage-routes.service';
 
 @Component({
   selector: 'app-edit-nav-bar',
@@ -14,33 +10,31 @@ import {
   styleUrls: ['./edit-nav-bar.component.scss'],
 })
 export class EditNavBarComponent implements OnInit {
-  appsList: AppsModel[] = apps;
-  // selected: any;
-
-  existingApps: AppsModel[] = [];
-  appsToAdd: AppsModel[] = [];
+  allAppsList: any = [];
+  existingApps: any = [];
+  appsToAdd: any = [];
 
   dragDropExistingApps: string[] = [];
   dragDropAppsToAdd: string[] = [];
 
-  constructor() {
-    this.existingApps = this.appsList.filter((app) => {
-      return app.isInNavigationBar === true;
-    });
-    this.appsToAdd = this.appsList.filter((app) => {
-      return app.isInNavigationBar === false;
-    });
+  constructor(private manageService: ManageRoutesService) {
+    this.allAppsList = this.manageService.getAllApps();
+    this.existingApps = this.manageService.getExistingApps();
+    this.appsToAdd = this.manageService.getAppsToAdd();
 
-    this.dragDropExistingApps = this.existingApps.map((v) => v.id);
-    this.dragDropAppsToAdd = this.appsToAdd.map((v) => v.id);
-    console.log('dragDropExistingApps ', this.dragDropExistingApps);
-    console.log('dragDropExistingApps ', this.dragDropAppsToAdd);
+    this.dragDropExistingApps = this.existingApps.map((v: any) => v.path);
+    this.dragDropAppsToAdd = this.appsToAdd.map((v: any) => v.path);
   }
 
   ngOnInit(): void {}
 
+  done(): any {
+    this.manageService.updateDisplayedRoutes(this.dragDropExistingApps, true);
+    this.manageService.updateDisplayedRoutes(this.dragDropAppsToAdd, false);
+    console.log('edit-nav this.allAppsList ', this.manageService.getAllApps());
+  }
+
   drop(event: any) {
-    debugger;
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

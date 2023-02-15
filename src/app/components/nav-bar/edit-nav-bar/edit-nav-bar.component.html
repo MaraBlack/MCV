@@ -1,72 +1,65 @@
-<h2 mat-dialog-title>Edit applications bar</h2>
-<mat-dialog-content class="dialog-container">
-  <div class="existing-apps">
-    <!-- exsiting apps -->
-    <div
-      class="app-inner existing-apps-list"
-      [ngClass]="dragDropExistingApps.length == 0 ? 'drag-drop-area' : ''"
-      #existingApps="cdkDropList"
-      cdkDropList
-      [cdkDropListData]="dragDropExistingApps"
-      [cdkDropListConnectedTo]="appsToAdd"
-      (cdkDropListDropped)="drop($event)"
-    >
+<div class="edit-apps-container">
+  <h2 mat-dialog-title>Edit applications bar</h2>
+  <mat-dialog-content class="dialog-container">
+    <div class="existing-apps">
+      <!-- exsiting apps -->
       <div
-        class="placeholder-drag-drop"
-        *ngIf="dragDropExistingApps.length == 0"
+        class="app-inner existing-apps-list"
+        [ngClass]="dragDropExistingApps.length == 0 ? 'drag-drop-area' : ''"
+        #existingApps="cdkDropList"
+        cdkDropList
+        [cdkDropListData]="dragDropExistingApps"
+        [cdkDropListConnectedTo]="appsToAdd"
+        (cdkDropListDropped)="drop($event)"
       >
-        Drag here apps to be displayed
+        <div
+          class="placeholder-drag-drop"
+          *ngIf="dragDropExistingApps.length == 0"
+        >
+          Drag here apps to be displayed
+        </div>
+        <ng-container *ngFor="let app of dragDropExistingApps; let i = index">
+          <app-icon [image]="app" cdkDrag [cdkDragData]="app"></app-icon>
+        </ng-container>
       </div>
-      <ng-container *ngFor="let app of dragDropExistingApps; let i = index">
-        <app-icon [image]="app" cdkDrag [cdkDragData]="app"></app-icon>
-      </ng-container>
-    </div>
 
-    <!-- apps to add to existing list-->
-    <div
-      class="app-inner"
-      [ngClass]="dragDropAppsToAdd.length == 0 ? 'drag-drop-area' : ''"
-      #appsToAdd="cdkDropList"
-      cdkDropList
-      [cdkDropListData]="dragDropAppsToAdd"
-      [cdkDropListConnectedTo]="existingApps"
-      (cdkDropListDropped)="drop($event)"
+      <!-- apps to add to existing list-->
+      <div
+        class="app-inner"
+        [ngClass]="dragDropAppsToAdd.length == 0 ? 'drag-drop-area' : ''"
+        #appsToAdd="cdkDropList"
+        cdkDropList
+        [cdkDropListData]="dragDropAppsToAdd"
+        [cdkDropListConnectedTo]="existingApps"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div
+          class="placeholder-drag-drop"
+          *ngIf="dragDropAppsToAdd.length == 0"
+        >
+          Drag here apps to be removed
+        </div>
+        <ng-container *ngFor="let app of dragDropAppsToAdd; let i = index">
+          <app-icon [image]="app" cdkDrag [cdkDragData]="app"></app-icon>
+        </ng-container>
+      </div>
+    </div>
+    <div class="add-apps"></div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="dialog-footer">
+    <button class="footer-btn cancel" mat-button mat-dialog-close>
+      Cancel
+    </button>
+    <button
+      class="footer-btn done"
+      mat-flat-button
+      color="primary"
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+      (click)="done()"
     >
-      <div class="placeholder-drag-drop" *ngIf="dragDropAppsToAdd.length == 0">
-        Drag here apps to be removed
-      </div>
-      <ng-container *ngFor="let app of dragDropAppsToAdd; let i = index">
-        <app-icon [image]="app" cdkDrag [cdkDragData]="app"></app-icon>
-      </ng-container>
-    </div>
-    <!-- <mat-grid-list cols="5" rowHeight="1:1" class="existing-apps">
-      <ng-container *ngFor="let app of existingApps; let i = index">
-        <mat-grid-tile>
-          <app-icon
-            class="svg-icon"
-            [image]="app.id"
-            [isRemovable]="app.isInNavigationBar"
-          ></app-icon>
-        </mat-grid-tile>
-      </ng-container>
-    </mat-grid-list>
-
-    <mat-grid-list cols="5" rowHeight="1:1" class="to-add-apps">
-      <ng-container *ngFor="let app of appsToAdd; let i = index">
-        <mat-grid-tile>
-          <app-icon
-            class="svg-icon"
-            [image]="app.id"
-            [isRemovable]="app.isInNavigationBar"
-          ></app-icon>
-        </mat-grid-tile>
-      </ng-container>
-    </mat-grid-list> -->
-  </div>
-  <div class="add-apps"></div>
-</mat-dialog-content>
-
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Done</button>
-</mat-dialog-actions>
+      Done
+    </button>
+  </mat-dialog-actions>
+</div>

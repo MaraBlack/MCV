@@ -21,13 +21,13 @@
           *ngFor="let route of appRoutes"
           mat-list-item
           [routerLink]="route.path"
-          [ngClass]="route.isActive ? route.class : ''"
-          (click)="setActive(route.icon)"
+          [ngClass]="route.isActive ? route.path : ''"
+          (click)="setToCurrentSelection(route.path)"
         >
           <mat-icon
             class="svg-icon"
-            *ngIf="route.icon"
-            [svgIcon]="route.icon"
+            *ngIf="route.path && route.isInNavigationBar"
+            [svgIcon]="route.path"
           ></mat-icon>
           <p class="app-name" *ngIf="showFiller">{{ route.label }}</p>
         </a>
