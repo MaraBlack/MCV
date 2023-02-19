@@ -8,9 +8,14 @@ mat-list-item:focus {
   height: 100vh;
 
   .nav {
-    // position: fixed;
     background-color: $primary;
     overflow: hidden;
+
+    .logo {
+      display: flex;
+      text-align: center;
+      padding-top: 4%;
+    }
 
     .expand-menu-btn {
       padding-left: 16px;
@@ -30,6 +35,11 @@ mat-list-item:focus {
 
     .nav-right {
       height: 100%;
+    }
+
+    .position-bottom {
+      bottom: 0px;
+      position: fixed;
     }
   }
 

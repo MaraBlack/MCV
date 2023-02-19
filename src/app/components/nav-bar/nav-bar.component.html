@@ -8,13 +8,9 @@
       [class]="!showFiller ? 'nav-left' : 'nav-left-expanded'"
     >
       <mat-nav-list>
-        <a class="expand-menu-btn">
-          <mat-icon
-            class="svg-icon"
-            aria-hidden="false"
-            (click)="showFiller = !showFiller"
-            >keyboard_control</mat-icon
-          >
+        <a class="logo">
+          <img class="svg-icon" aria-hidden="false" />
+          <p class="logo-name" *ngIf="showFiller">MCV</p>
         </a>
         <a
           #routeElement
@@ -38,6 +34,15 @@
           >edit</mat-icon
         >
       </div>
+
+      <a class="expand-menu-btn position-bottom">
+        <mat-icon
+          class="svg-icon"
+          aria-hidden="false"
+          (click)="showFiller = !showFiller"
+          >chevron_right</mat-icon
+        >
+      </a>
     </mat-drawer>
 
     <div class="sidenav-content">
