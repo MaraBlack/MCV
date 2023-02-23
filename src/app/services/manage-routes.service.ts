@@ -1,46 +1,65 @@
 import { Injectable } from '@angular/core';
 import { routes } from '../app-routing.module';
-import { AppModule } from '../app.module';
-import { AppsModel } from '../models/icon.model';
+import { PersistanceService } from './persistance.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ManageRoutesService {
-  allAppsList = routes.filter((r) => {
-    return r.path !== '' && r.path !== '**' && r.path !== 'home';
-  });
+  allAppsList: any = [];
+
+  constructor(private localStorageService: PersistanceService) {
+    if (this.localStorageService.get('APPS_STATE')) {
+      this.allAppsList = this.localStorageService
+        .get('APPS_STATE')
+        .filter((r: any) => {
+          return r.path !== '' && r.path !== '**';
+        });
+    } else {
+      this.allAppsList = routes.filter((r) => {
+        return r.path !== '' && r.path !== '**';
+      });
+    }
+  }
 
   getAllApps() {
-    return this.allAppsList;
+    return routes.filter((r) => {
+      return r.path !== '' && r.path !== '**';
+    });
   }
 
   getExistingApps() {
-    return this.allAppsList.filter((app) => {
-      return app.isInNavigationBar === true;
+    return this.allAppsList.filter((app: any) => {
+      return app.isInNavigationBar == true;
     });
   }
 
   getAppsToAdd() {
-    return this.allAppsList.filter((app) => {
-      return app.isInNavigationBar === false;
+    return this.allAppsList.filter((app: any) => {
+      return app.isInNavigationBar == false;
     });
   }
 
   updateDisplayedRoutes(stringArray: string[], toAdd: boolean): void {
     stringArray.forEach((appName: string) => {
-      routes.filter((r) => {
+      this.allAppsList.filter((r: any) => {
         return r.path === appName;
       })[0].isInNavigationBar = toAdd;
     });
+
+    this.localStorageService.set('APPS_STATE', this.allAppsList);
   }
 
   setToCurrentSelection(selected: string) {
-    routes.forEach((el) => {
+    this.allAppsList.forEach((el: any) => {
       el.isActive = false;
     });
-    const selectedRoute = routes.find((obj) => obj.path == selected);
 
+    const selectedRoute = this.allAppsList.find(
+      (obj: any) => obj.path == selected
+    );
     if (selectedRoute) selectedRoute.isActive = true;
+
+    this.localStorageService.set('APPS_STATE', this.allAppsList);
   }
 }

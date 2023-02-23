@@ -14,11 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpHandler,
-} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { DeviantComponent } from './components/applications/deviant/deviant.component';
 import { EditNavBarComponent } from './components/nav-bar/edit-nav-bar/edit-nav-bar.component';
@@ -30,6 +26,7 @@ import { PatreonComponent } from './components/applications/patreon/patreon.comp
 import { GithubComponent } from './components/applications/github/github.component';
 import { DiscordComponent } from './components/applications/discord/discord.component';
 import { TwitchComponent } from './components/applications/twitch/twitch.component';
+import { PersistanceService } from './services/persistance.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +58,7 @@ import { TwitchComponent } from './components/applications/twitch/twitch.compone
     MatDialogModule,
     MatGridListModule,
   ],
-  providers: [],
+  providers: [PersistanceService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

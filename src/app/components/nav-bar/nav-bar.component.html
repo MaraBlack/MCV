@@ -7,11 +7,7 @@
       class="nav"
       [class]="!showFiller ? 'nav-left' : 'nav-left-expanded'"
     >
-      <!-- <mat-icon class="svg-icon" [svgIcon]="'mcv'"></mat-icon> -->
-
       <mat-nav-list class="apps-list">
-        <!-- <a class="logo"> -->
-        <!-- </a> -->
         <a
           #routeElement
           *ngFor="let route of appRoutes"
@@ -21,10 +17,11 @@
           (click)="setToCurrentSelection(route.path)"
         >
           <mat-icon
+            *ngIf="route.path && route.isInNavigationBar === true"
             class="svg-icon"
-            *ngIf="route.path && route.isInNavigationBar"
             [svgIcon]="route.path"
           ></mat-icon>
+
           <p class="app-name" *ngIf="showFiller">{{ route.label }}</p>
         </a>
       </mat-nav-list>

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { apps } from 'src/app/models/apps.model';
 import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { AppsModel } from 'src/app/models/icon.model';
 import { ManageRoutesService } from 'src/app/services/manage-routes.service';
+import { PersistanceService } from 'src/app/services/persistance.service';
 
 @Component({
   selector: 'app-edit-nav-bar',
@@ -17,10 +16,17 @@ export class EditNavBarComponent implements OnInit {
   dragDropExistingApps: string[] = [];
   dragDropAppsToAdd: string[] = [];
 
-  constructor(private manageService: ManageRoutesService) {
-    this.allAppsList = this.manageService.getAllApps();
-    this.existingApps = this.manageService.getExistingApps();
-    this.appsToAdd = this.manageService.getAppsToAdd();
+  constructor(
+    private manageRoutesService: ManageRoutesService,
+    private localStorageService: PersistanceService
+  ) {
+    this.allAppsList = this.manageRoutesService.getAllApps();
+    this.existingApps = this.manageRoutesService
+      .getExistingApps()
+      .filter((r: any) => {
+        return r.path !== 'home';
+      });
+    this.appsToAdd = this.manageRoutesService.getAppsToAdd();
 
     this.dragDropExistingApps = this.existingApps.map((v: any) => v.path);
     this.dragDropAppsToAdd = this.appsToAdd.map((v: any) => v.path);
@@ -29,8 +35,14 @@ export class EditNavBarComponent implements OnInit {
   ngOnInit(): void {}
 
   done(): any {
-    this.manageService.updateDisplayedRoutes(this.dragDropExistingApps, true);
-    this.manageService.updateDisplayedRoutes(this.dragDropAppsToAdd, false);
+    this.manageRoutesService.updateDisplayedRoutes(
+      this.dragDropExistingApps,
+      true
+    );
+    this.manageRoutesService.updateDisplayedRoutes(
+      this.dragDropAppsToAdd,
+      false
+    );
   }
 
   drop(event: any) {

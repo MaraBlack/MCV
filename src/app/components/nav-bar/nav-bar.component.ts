@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
 import { ManageRoutesService } from 'src/app/services/manage-routes.service';
+import { PersistanceService } from 'src/app/services/persistance.service';
 import { routes } from '../../app-routing.module';
 import { EditNavBarComponent } from './edit-nav-bar/edit-nav-bar.component';
 
@@ -17,15 +18,11 @@ export class NavBarComponent implements OnInit {
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    private manageRoutesService: ManageRoutesService
+    private manageRoutesService: ManageRoutesService,
+    private localStorageService: PersistanceService
   ) {
-    this.appRoutes = routes.filter((r) => {
-      return r.path !== '' && r.path !== '**' && r.isInNavigationBar == true;
-    });
-
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        // event is an instance of NavigationEnd, get url!
         const url = event.urlAfterRedirects;
         const selectedRoute = routes.find(
           (obj) => obj.path == url.replace('/', '')
@@ -35,21 +32,43 @@ export class NavBarComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.localStorageService.get('APPS_STATE')) {
+      this.appRoutes = this.getFileredDataByPathAndNavigation(
+        this.localStorageService.get('APPS_STATE')
+      );
+    } else {
+      this.appRoutes = this.manageRoutesService
+        .getAllApps()
+        .filter((r: any) => {
+          return r.isInNavigationBar == true;
+        });
+    }
+  }
 
   setToCurrentSelection(selected: string) {
     this.manageRoutesService.setToCurrentSelection(selected);
+    this.appRoutes = this.getFileredDataByPathAndNavigation(
+      this.localStorageService.get('APPS_STATE')
+    );
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(EditNavBarComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.appRoutes = routes.filter((r) => {
-        return r.path !== '' && r.path !== '**' && r.isInNavigationBar == true;
-      });
-
       this.router.navigate(['/home']);
+      this.manageRoutesService.setToCurrentSelection('home');
+
+      this.appRoutes = this.getFileredDataByPathAndNavigation(
+        this.localStorageService.get('APPS_STATE')
+      );
+    });
+  }
+
+  private getFileredDataByPathAndNavigation(localStorageData: any) {
+    return localStorageData.filter((r: any) => {
+      return r.isInNavigationBar == true;
     });
   }
 }

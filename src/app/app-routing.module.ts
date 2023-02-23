@@ -9,6 +9,7 @@ import { InstagramComponent } from './components/applications/instagram/instagra
 import { LinkedinComponent } from './components/applications/linkedin/linkedin.component';
 import { PatreonComponent } from './components/applications/patreon/patreon.component';
 import { TwitchComponent } from './components/applications/twitch/twitch.component';
+import { CanAccessApp } from './guards/canAccessApp';
 import { AppsEnum, AppsLabel } from './models/icon.model';
 
 export const routes = [
@@ -25,6 +26,7 @@ export const routes = [
     label: AppsLabel.Linkedin,
     isActive: false,
     isInNavigationBar: false,
+    canActivate: [CanAccessApp],
   },
   {
     path: AppsEnum.Deviant,
@@ -32,6 +34,7 @@ export const routes = [
     label: AppsLabel.Deviant,
     isActive: false,
     isInNavigationBar: false,
+    canActivate: [CanAccessApp],
   },
   {
     path: AppsEnum.Facebook,
@@ -39,6 +42,7 @@ export const routes = [
     label: AppsLabel.Facebook,
     isActive: false,
     isInNavigationBar: false,
+    canActivate: [CanAccessApp],
   },
   {
     path: AppsEnum.Instagram,
@@ -46,6 +50,7 @@ export const routes = [
     label: AppsLabel.Instagram,
     isActive: false,
     isInNavigationBar: false,
+    canActivate: [CanAccessApp],
   },
   {
     path: AppsEnum.Patreon,
@@ -53,6 +58,7 @@ export const routes = [
     label: AppsLabel.Patreon,
     isActive: false,
     isInNavigationBar: false,
+    canActivate: [CanAccessApp],
   },
   {
     path: AppsEnum.Github,
@@ -60,6 +66,7 @@ export const routes = [
     label: AppsLabel.Github,
     isActive: false,
     isInNavigationBar: false,
+    canActivate: [CanAccessApp],
   },
   {
     path: AppsEnum.Discord,
@@ -67,6 +74,7 @@ export const routes = [
     label: AppsLabel.Discord,
     isActive: false,
     isInNavigationBar: false,
+    canActivate: [CanAccessApp],
   },
   {
     path: AppsEnum.Twitch,
@@ -74,6 +82,7 @@ export const routes = [
     label: AppsLabel.Twitch,
     isActive: false,
     isInNavigationBar: false,
+    canActivate: [CanAccessApp],
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent },
@@ -84,7 +93,3 @@ export const routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-function returnC() {
-  return;
-}
