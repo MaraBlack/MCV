@@ -24,6 +24,12 @@ import { DeviantComponent } from './components/applications/deviant/deviant.comp
 import { EditNavBarComponent } from './components/nav-bar/edit-nav-bar/edit-nav-bar.component';
 import { IconComponent } from './components/shared/icon/icon.component';
 import { DefaultComponent } from './components/applications/default-component/default.component';
+import { FacebookComponent } from './components/applications/facebook/facebook.component';
+import { InstagramComponent } from './components/applications/instagram/instagram.component';
+import { PatreonComponent } from './components/applications/patreon/patreon.component';
+import { GithubComponent } from './components/applications/github/github.component';
+import { DiscordComponent } from './components/applications/discord/discord.component';
+import { TwitchComponent } from './components/applications/twitch/twitch.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +41,12 @@ import { DefaultComponent } from './components/applications/default-component/de
     EditNavBarComponent,
     IconComponent,
     DefaultComponent,
+    FacebookComponent,
+    InstagramComponent,
+    PatreonComponent,
+    GithubComponent,
+    DiscordComponent,
+    TwitchComponent,
   ],
   imports: [
     BrowserModule,

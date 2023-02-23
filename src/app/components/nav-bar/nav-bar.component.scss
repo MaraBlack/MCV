@@ -6,49 +6,53 @@ mat-list-item:focus {
 
 .nav-container {
   height: 100vh;
+  // padding: 0 8px;
 
   .nav {
     background-color: $primary;
     overflow: hidden;
 
-    .logo {
-      display: flex;
-      text-align: center;
-      padding-top: 4%;
-    }
+    .apps-list {
+      padding: 6px;
 
-    .expand-menu-btn {
-      padding-left: 16px;
-    }
-    .svg-icon {
-      width: 32px;
-      height: 32px;
-    }
-    .app-name {
-      text-align: center;
-      padding-left: 4%;
-      padding-top: 16%;
-    }
-    .nav-left-expanded {
-      width: auto;
-    }
-
-    .nav-right {
-      height: 100%;
-    }
-
-    .position-bottom {
-      bottom: 0px;
-      position: fixed;
+      .tab {
+        background-color: $accent-mid;
+        border-radius: 10px;
+      }
+      .svg-icon {
+        width: 32px;
+        height: 32px;
+      }
     }
   }
 
-  .edit-apps {
+  .logo {
     text-align: center;
-    border-top: 1px solid grey;
-    margin: 12%;
-    padding-top: 8%;
   }
+
+  .expand-menu-btn {
+    padding-left: 16px;
+  }
+
+  .nav-left-expanded {
+    width: auto;
+  }
+
+  .nav-right {
+    height: 100%;
+  }
+
+  .position-bottom {
+    bottom: 0px;
+    position: fixed;
+  }
+}
+
+.edit-apps {
+  text-align: center;
+  border-top: 1px solid grey;
+  margin: 12%;
+  padding-top: 8%;
 }
 
 .home,

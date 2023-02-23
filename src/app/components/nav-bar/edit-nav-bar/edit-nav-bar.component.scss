@@ -8,7 +8,7 @@ mat-dialog-content {
   .dialog-container {
     .existing-apps {
       width: 600px;
-      height: 160px;
+      height: 456px;
 
       .app-inner {
         padding: 12px;
@@ -41,8 +41,6 @@ mat-dialog-content {
   }
 
   .dialog-footer {
-    padding: 70px 16px 20px 0;
-    display: flex;
     gap: 0px 16px;
 
     .footer-btn {

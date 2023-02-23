@@ -7,17 +7,17 @@
       class="nav"
       [class]="!showFiller ? 'nav-left' : 'nav-left-expanded'"
     >
-      <mat-nav-list>
-        <a class="logo">
-          <img class="svg-icon" aria-hidden="false" />
-          <p class="logo-name" *ngIf="showFiller">MCV</p>
-        </a>
+      <!-- <mat-icon class="svg-icon" [svgIcon]="'mcv'"></mat-icon> -->
+
+      <mat-nav-list class="apps-list">
+        <!-- <a class="logo"> -->
+        <!-- </a> -->
         <a
           #routeElement
           *ngFor="let route of appRoutes"
           mat-list-item
           [routerLink]="route.path"
-          [ngClass]="route.isActive ? route.path : ''"
+          [ngClass]="route.isActive ? 'tab' : ''"
           (click)="setToCurrentSelection(route.path)"
         >
           <mat-icon

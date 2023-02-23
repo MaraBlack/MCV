@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnChanges,
-  OnInit,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
 import { ManageRoutesService } from 'src/app/services/manage-routes.service';
@@ -23,8 +17,7 @@ export class NavBarComponent implements OnInit {
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    private manageRoutesService: ManageRoutesService,
-    private cdRef: ChangeDetectorRef
+    private manageRoutesService: ManageRoutesService
   ) {
     this.appRoutes = routes.filter((r) => {
       return r.path !== '' && r.path !== '**' && r.isInNavigationBar == true;
