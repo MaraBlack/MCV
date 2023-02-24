@@ -27,6 +27,12 @@ import { GithubComponent } from './components/applications/github/github.compone
 import { DiscordComponent } from './components/applications/discord/discord.component';
 import { TwitchComponent } from './components/applications/twitch/twitch.component';
 import { PersistanceService } from './services/persistance.service';
+import { TravelComponent } from './components/applications/travel/travel.component';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -44,6 +50,7 @@ import { PersistanceService } from './services/persistance.service';
     GithubComponent,
     DiscordComponent,
     TwitchComponent,
+    TravelComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +65,23 @@ import { PersistanceService } from './services/persistance.service';
     MatDialogModule,
     MatGridListModule,
   ],
-  providers: [PersistanceService],
+  providers: [
+    PersistanceService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '1024796376264-7fc67nvoedbkg69lhe4ra0f20lltgg6q.apps.googleusercontent.com'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -8,6 +8,7 @@ import { HomeComponent } from './components/applications/home/home.component';
 import { InstagramComponent } from './components/applications/instagram/instagram.component';
 import { LinkedinComponent } from './components/applications/linkedin/linkedin.component';
 import { PatreonComponent } from './components/applications/patreon/patreon.component';
+import { TravelComponent } from './components/applications/travel/travel.component';
 import { TwitchComponent } from './components/applications/twitch/twitch.component';
 import { CanAccessApp } from './guards/canAccessApp';
 import { AppsEnum, AppsLabel } from './models/icon.model';
@@ -80,6 +81,14 @@ export const routes = [
     path: AppsEnum.Twitch,
     component: TwitchComponent,
     label: AppsLabel.Twitch,
+    isActive: false,
+    isInNavigationBar: false,
+    canActivate: [CanAccessApp],
+  },
+  {
+    path: AppsEnum.Travel,
+    component: TravelComponent,
+    label: AppsLabel.Travel,
     isActive: false,
     isInNavigationBar: false,
     canActivate: [CanAccessApp],

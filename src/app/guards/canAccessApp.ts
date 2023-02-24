@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { routes } from '../app-routing.module';
 import { Application } from '../models/icon.model';
 import { ManageRoutesService } from '../services/manage-routes.service';
 import { PersistanceService } from '../services/persistance.service';
@@ -15,7 +16,9 @@ export class CanAccessApp implements CanActivate {
   canActivate(data: any): boolean {
     console.log('data', data);
     const selected = data.routeConfig?.path;
-    let allApps = this.localStorageService.get('APPS_STATE');
+    let allApps = this.localStorageService.get('APPS_STATE')
+      ? this.localStorageService.get('APPS_STATE')
+      : routes;
     let isInNavigation = allApps.filter((r: Application) => {
       return r.path == selected;
     })[0].isInNavigationBar;

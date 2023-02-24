@@ -8,6 +8,7 @@ export enum AppsEnum {
   Github = 'github',
   Discord = 'discord',
   Twitch = 'twitch',
+  Travel = 'travel',
 }
 
 export enum AppsLabel {
@@ -19,6 +20,7 @@ export enum AppsLabel {
   Github = 'Github',
   Discord = 'Discord',
   Twitch = 'Twitch',
+  Travel = 'Travel',
 }
 
 export interface Application {
