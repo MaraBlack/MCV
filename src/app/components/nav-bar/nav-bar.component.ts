@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd, Router } from '@angular/router';
+import { Application } from 'src/app/models/icon.model';
 import { ManageRoutesService } from 'src/app/services/manage-routes.service';
 import { PersistanceService } from 'src/app/services/persistance.service';
 import { routes } from '../../app-routing.module';
@@ -25,7 +26,7 @@ export class NavBarComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         const url = event.urlAfterRedirects;
         const selectedRoute = routes.find(
-          (obj) => obj.path == url.replace('/', '')
+          (obj: Application) => obj.path == url.replace('/', '')
         );
         if (selectedRoute) selectedRoute.isActive = true;
       }
@@ -33,6 +34,10 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setAppRoutes();
+  }
+
+  setAppRoutes() {
     if (this.localStorageService.get('APPS_STATE')) {
       this.appRoutes = this.getFileredDataByPathAndNavigation(
         this.localStorageService.get('APPS_STATE')
@@ -40,7 +45,7 @@ export class NavBarComponent implements OnInit {
     } else {
       this.appRoutes = this.manageRoutesService
         .getAllApps()
-        .filter((r: any) => {
+        .filter((r: Application) => {
           return r.isInNavigationBar == true;
         });
     }
@@ -57,8 +62,8 @@ export class NavBarComponent implements OnInit {
     const dialogRef = this.dialog.open(EditNavBarComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.router.navigate(['/home']);
       this.manageRoutesService.setToCurrentSelection('home');
+      this.router.navigate(['/home']);
 
       this.appRoutes = this.getFileredDataByPathAndNavigation(
         this.localStorageService.get('APPS_STATE')
@@ -67,7 +72,7 @@ export class NavBarComponent implements OnInit {
   }
 
   private getFileredDataByPathAndNavigation(localStorageData: any) {
-    return localStorageData.filter((r: any) => {
+    return localStorageData.filter((r: Application) => {
       return r.isInNavigationBar == true;
     });
   }

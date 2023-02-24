@@ -10,13 +10,6 @@ export enum AppsEnum {
   Twitch = 'twitch',
 }
 
-export interface AppsModel {
-  id: string;
-  label: string;
-  isActive: boolean;
-  isInNavigationBar: boolean;
-}
-
 export enum AppsLabel {
   Linkedin = 'LinkedIn',
   Deviant = 'DeviantArt',
@@ -26,4 +19,15 @@ export enum AppsLabel {
   Github = 'Github',
   Discord = 'Discord',
   Twitch = 'Twitch',
+}
+
+export interface Application {
+  path: string;
+  component?: any;
+  label?: string;
+  isActive?: boolean;
+  isInNavigationBar?: boolean;
+  canActivate?: any;
+  redirectTo?: any;
+  pathMatch?: any;
 }

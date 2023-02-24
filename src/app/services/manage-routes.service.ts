@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { routes } from '../app-routing.module';
+import { Application } from '../models/icon.model';
 import { PersistanceService } from './persistance.service';
 
 @Injectable({
@@ -12,7 +13,7 @@ export class ManageRoutesService {
     if (this.localStorageService.get('APPS_STATE')) {
       this.allAppsList = this.localStorageService
         .get('APPS_STATE')
-        .filter((r: any) => {
+        .filter((r: Application) => {
           return r.path !== '' && r.path !== '**';
         });
     } else {
@@ -22,27 +23,33 @@ export class ManageRoutesService {
     }
   }
 
-  getAllApps() {
-    return routes.filter((r) => {
+  getAllApps(): Application[] {
+    return routes.filter((r: Application) => {
       return r.path !== '' && r.path !== '**';
     });
   }
 
-  getExistingApps() {
-    return this.allAppsList.filter((app: any) => {
+  getExistingApps(): Application[] {
+    return this.allAppsList.filter((app: Application) => {
       return app.isInNavigationBar == true;
     });
   }
 
-  getAppsToAdd() {
-    return this.allAppsList.filter((app: any) => {
+  getAppsToAdd(): Application[] {
+    return this.allAppsList.filter((app: Application) => {
       return app.isInNavigationBar == false;
+    });
+  }
+
+  getActiveTab(): Application[] {
+    return this.allAppsList.filter((app: Application) => {
+      return app.isActive == true;
     });
   }
 
   updateDisplayedRoutes(stringArray: string[], toAdd: boolean): void {
     stringArray.forEach((appName: string) => {
-      this.allAppsList.filter((r: any) => {
+      this.allAppsList.filter((r: Application) => {
         return r.path === appName;
       })[0].isInNavigationBar = toAdd;
     });
@@ -50,13 +57,13 @@ export class ManageRoutesService {
     this.localStorageService.set('APPS_STATE', this.allAppsList);
   }
 
-  setToCurrentSelection(selected: string) {
-    this.allAppsList.forEach((el: any) => {
+  setToCurrentSelection(selected: string): void {
+    this.allAppsList.forEach((el: Application) => {
       el.isActive = false;
     });
 
     const selectedRoute = this.allAppsList.find(
-      (obj: any) => obj.path == selected
+      (obj: Application) => obj.path == selected
     );
     if (selectedRoute) selectedRoute.isActive = true;
 
