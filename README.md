@@ -16,10 +16,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## BUGS
 
-[desktop] - At refresh, get current route and set nav item as active - solved
-[mobile] - nav items are not colored at click, only when clicked outside the color is applied (mat-icon might be the source of it) - outdated
+- [desktop] - At refresh, get current route and set nav item as active - solved
+- [mobile] - nav items are not colored at click, only when clicked outside the color is applied (mat-icon might be the source of it) - outdated
 
 ## TODO
 
-[desktop] - align text when nav is expanded
-[mobile] - resize apps from modal, they are too big
+- [desktop] - align text when nav is expanded
+- [mobile] - resize apps from modal, they are too big
