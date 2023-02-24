@@ -1,26 +1,14 @@
 # MCV - More than a CV
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2. 
+The purpose of the app is to create a portofolio in which you can show your work experience along with your hobbies or other interesting stuff you want to share.:)
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ## Further help
 
@@ -28,5 +16,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## BUGS
 
-At refresh, get current route and set nav item as active  - solved
-At mobile version, nav items are not colored at click, only when clicked outside the color is applied (mat-icon might be the source of it)
+[desktop] - At refresh, get current route and set nav item as active - solved
+[mobile] - nav items are not colored at click, only when clicked outside the color is applied (mat-icon might be the source of it) - outdated
+
+## TODO
+
+[desktop] - align text when nav is expanded
+[mobile] - resize apps from modal, they are too big
